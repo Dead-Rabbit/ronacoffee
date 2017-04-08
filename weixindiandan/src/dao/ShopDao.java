@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,47 @@ public class ShopDao {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+		}finally{
+			try {
+				res.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return shops;
 	}
+	//通过ID获取商店
+		public Shops getShopById(String shopId){
+			Connection conn = jdbcHelper.getConnection();
+			String sql = "select * from shops where shopId = ?;";
+			ResultSet res = null;
+			Shops shop = new Shops();
+			
+			try {
+				PreparedStatement psta = conn.prepareStatement(sql);
+				psta.setString(1, shopId);
+				res = psta.executeQuery();
+				while(res.next()){
+					shop.setShopId(res.getString("shopId"));
+					shop.setShopName(res.getString("shopName"));
+					shop.setShopPosition_longitude(res.getString("shopPosition_longitude"));
+					shop.setShopPosition_lat(res.getString("shopPosition_lat"));
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally{
+				try {
+					res.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return shop;
+		}
 	public static void main(String[] args) {
 		ShopDao dao = new ShopDao();
 		List<Shops> list = dao.getAllShop();

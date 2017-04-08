@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +32,17 @@ public class ItemDao {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+		} finally {
+			try {
+				res.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return items;
 	}
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ItemDao dao = new ItemDao();

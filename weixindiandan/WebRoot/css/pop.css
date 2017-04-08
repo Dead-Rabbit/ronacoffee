@@ -1,0 +1,374 @@
+/*
+** CSS Document *
+** @name pop css
+------------------------------------------------------
+** @autho hgy@gemdesign.cn Mr.Hu
+------------------------------------------------------
+** @autho 2014-09-01
+------------------------------------------------------
+*/
+/* mask start
+-------------------------*/
+.mask_bg,.mask_bg2 {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	filter: alpha(opacity = 50);
+	opacity: .5;
+	-webkit-opacity: .5;
+	-moz-opacity: .5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99998
+}
+/*TODO: add by HYL on 2015-05-27----start*/
+.mask_bg1{
+	width: 100%;
+	height: 100%;
+	background: #FFF;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	-webkit-opacity: 0;
+	-moz-opacity: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99998
+}
+/*---------end*/
+.mask_bg2 {
+	z-index: 9996
+}
+
+.pop_complete {
+	width: 100%;
+	text-align: center;
+	background: #fff;
+	position: fixed;
+	bottom: 2.75em;
+	left: 0;
+	z-index: 99999
+}
+
+.pop_complete p {
+	padding: .5em 0;
+	border-bottom: 1px #ededed solid;
+}
+
+.pop_complete a {
+	border-top: 1px #fff solid;
+	font-size: 1.25em;
+	background: #fafafa;
+	padding: .5em 0;
+	display: block
+}
+
+/*TODO: update by HYL on 2015-05-27----start*/
+
+/* // TODO: add by JZH on 2015-05-29  BEGIN */
+/*  分类列表显示  */
+/** new css for select category list 01 */
+/*
+.pop_sort_class {
+	width: 16em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	left: 50%;
+	margin-left: -8em;
+	top: 8%;
+	bottom: 8%;
+	z-index: 99999;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+
+}
+*/
+/* // TODO: add by JZH on 2015-05-29  END   */
+
+/** new css for select category list 02 */
+.pop_sort_class {
+	width: 10em;
+	background: #fff;
+	position: fixed;
+	left: 0;
+	top: 89px;
+	bottom: 53px;
+	z-index: 99999;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+}
+
+/*  弹出消息  */
+/*
+.pop_sort,.pop_count,.pop_recharge {
+	width: 16em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	z-index: 99999;
+	top: 40%;
+	left: 50%;
+	margin-left: -8em;
+	overflow-y: auto;
+	bottom: 8%;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+}
+*/
+
+
+.pop_sort,.pop_count,.pop_recharge {
+	width: 16em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	z-index: 99999;
+	top: 50%;
+	left: 50%;
+	margin-left: -8em;
+}
+
+/*  弹出消息  */
+/*.pop_msg {
+	width: 20em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	z-index: 99999;
+	top: 40%;
+	left: 50%;
+	margin-left: -10em;
+}*/
+
+/* // TODO: add by JZH on 2015-05-29  BEGIN */
+.pop_msg {
+	width: 20em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	z-index: 99999;
+	top: 40%;
+	left: 50%;
+	margin-left: -10em;
+}
+
+/* // TODO: add by JZH on 2015-05-29  END   */
+
+.car_animate{
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #F0B28B;
+	z-index: 9;
+	opacity: 0;
+}
+
+/*-----end*/
+
+.pop_count_store,.pop_recharge_store {
+	width: 20em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	z-index: 99999;
+	top: 10%;
+	left: 50%;
+	margin-left: -10em;
+}
+
+/* new css for pop_sort_store  */
+.pop_sort_store {
+	width: 16em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	left: 50%;
+	margin-left: -8em;
+	top: 8%;
+	bottom: 8%;
+	z-index: 99999;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+}
+
+/* pop_sort_table for list table  
+ add by jzh on 2016.03.30 14:41  */
+.pop_sort_table {
+	width: 16em;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	left: 50%;
+	margin-left: -8em;
+	top: 8%;
+	bottom: 8%;
+	z-index: 99999;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+}
+
+/*
+.pop_sort_store {
+width: 20em;
+background: #fff;
+border-radius: 10px;
+position: fixed;
+left: 50%;
+margin-left: -10em;
+top: 8%;
+bottom: 8%;
+z-index: 99999;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+-moz-overflow-scrolling: touch;
+-o-overflow-scrolling: touch;
+}
+*/
+
+.pop_shadow {
+	box-shadow: 0 0 14px rgba(0, 0, 0, .7)
+}
+
+.confirm_pop {
+	text-align: center;
+	position: relative
+}
+.sort_con{
+	text-align: center;
+	position: relative;
+}
+
+a.cancel {
+	position: absolute;
+	padding: .7em 1em;
+	color: #787878;
+	top: 0;
+	left: 0
+}
+
+.sort_con h4,.confirm_pop h4 {
+	font-size: 1.125em;
+	padding: .5em 0
+}
+
+.sort_con li {
+	border-top: 1px #ededed solid
+}
+
+.sort_con li a {
+	padding: .5em .8em;
+	display: block
+}
+
+.sort_con li.selected a {
+	background: url(images/icon-selected.png) no-repeat right center;
+	background-size: 1.125em 1.125em;
+	background-origin: content-box
+}
+
+.sort_con_store,.confirm_pop {
+	text-align: center;
+	position: relative
+}
+
+a.cancelStore {
+	position: absolute;
+	padding: .7em 1em;
+	color: #787878;
+	top: 0;
+	left: 0
+}
+
+.sort_con_store h4,.confirm_pop h4 {
+	font-size: 1.125em;
+	padding: .5em 0
+}
+
+.sort_con_store li {
+	border-top: 1px #ededed solid
+}
+
+.sort_con_store li a {
+	padding: .5em .8em;
+	display: block
+}
+
+.sort_con_store li.selected a {
+	background: url(images/icon-selected.png) no-repeat right center;
+	background-size: 1.125em 1.125em;
+	background-origin: content-box
+}
+
+.count_item {
+	border-top: 1px #ededed solid;
+	overflow: hidden
+}
+
+a.plus_btn2,a.add_btn3 {
+	width: 2.75em;
+	height: 2.75em;
+	background: url(images/icon-plus.png) no-repeat center top;
+	background-size: 1.75em 1.75em;
+	display: inline-block;
+	text-indent:999px
+}
+
+a.add_btn3 {
+	background: url(images/icon-add.png) no-repeat center top;
+	background-size: 1.75em 1.75em
+}
+.count_item_con{
+	magrin:0 auto;
+	overflow:hidden;
+	padding-top:1em;
+	text-align:center
+}
+a.cancel02,a.confirm,a.confirm1 {
+	width: 33%;
+	padding: .6em 0;
+	text-align: center;
+	color: #787878;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border-radius: 0 0 0 10px;
+	border-right: 1px #ededed solid;
+	float: left
+}
+
+a.confirm {
+	color: #dd7442;
+	/* border-right: none */
+}
+
+.recharge_infor {
+	border-top: 1px #ededed solid;
+	padding: .6em 1em;
+	text-align: left
+}
+
+.input_02 {
+	width: 100%;
+	text-align: center;
+	border-radius: 0;
+	font-size: 1em;
+	color: #787878;
+	height: 2.75em;
+	border: none;
+	background: #f8f8f8;
+	border-top: 1px #ededed solid
+}

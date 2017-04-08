@@ -1,6 +1,7 @@
 package Util;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,8 +43,6 @@ public class MapUtil {
 		Map<Double, Shops> sortMap = new TreeMap<Double, Shops>();
 
 		sortMap.putAll(map);
-		
-		System.out.println(sortMap);
 
 		return sortMap;
 	}
@@ -56,7 +55,22 @@ public class MapUtil {
 //		}
 //	}
 	public static void main(String[] args) {
-		double dis = MapUtil.Distence(35.9432983282,120.1678316227,35.9477731210,120.1776135820);
-		System.out.println(dis);
+		Map<Double, Shops> map = new HashMap<Double, Shops>();
+		Shops one = new Shops();
+		Shops two = new Shops();
+		Shops three = new Shops();
+		one.setShopId("1");
+		two.setShopId("2");
+		three.setShopId("3");
+		map.put(1.0, one);
+		map.put(2.4, three);
+		map.put(2.0, two);
+		for(Double key : map.keySet()){
+			System.out.println(key);
+		}
+		map = MapUtil.sortMapByKey(map);
+		for(Double key : map.keySet()){
+			System.out.println(key);
+		}
 	}
 }
