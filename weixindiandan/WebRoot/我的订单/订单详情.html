@@ -1,0 +1,207 @@
+
+<!-- saved from url=(0078)http://yun.menu123.cn/newMenu/wechat/pre_order_view.jsp?commTenaId=32&oid=5880 -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./js/jquery.min.js.下载"></script>
+<script type="text/javascript">
+ var ctx = "/newMenu";
+ function UrlEncode(str){ 
+    str = "http://yun.menu123.cn"+str;
+    return str;
+    var ret=encodeURIComponent(str); 
+    return ret;
+ }
+ 
+ function firstPage(){
+	 var pageNo = 1;
+	 goPage(pageNo);
+ }
+ function lastPage(){
+	 goPage($('#totalPage').val());
+ }
+ function prePage(pageNo){
+	 if(pageNo ==1 ) return;
+	 var prePageNo = parseInt(pageNo)-1;
+	 goPage(prePageNo);
+ }
+ function nextPage(pageNo){
+	 var nextPageNo = parseInt(pageNo)+1;
+	 goPage(nextPageNo);
+ }
+ function goPage(pageNo){
+	 $('#pageNo').val(pageNo); 
+	 $('form')[0].submit(); 
+ }
+ function selPage(){
+	 var selPageNo = $('#selPage').val();
+	 var lastPage = parseInt($('#totalPage').val());//最后页
+	 var thisPage = parseInt(selPageNo);//输入页数
+	 if(thisPage>lastPage){
+		 thisPage = lastPage;
+	 }else if(thisPage==0){
+		 thisPage=1;
+	 }
+	 goPage(thisPage);    
+ }
+ $(function(){
+		 var reg = new RegExp("^[0-9]*$");
+		 if(!reg.test("")){  
+		 }
+ })
+ 
+ //修改密码
+ function updatePassword() {
+		var $oldpass = $('#txtOldPass');
+		var $newpass = $('#txtNewPass');
+		var $rePass = $('#txtRePass');
+		
+		if ($oldpass.val() == '') {
+			alert('请输入原密码！');
+			return false;
+		}
+		if ($newpass.val() == '') {
+			alert('请输入新密码！');
+			return false;
+		}
+		if ($rePass.val() == '') {
+			alert('请输入确认密码！');
+			return false;
+		}
+
+		if ($newpass.val() != $rePass.val()) {
+			alert('新密码两次输入不一至！请重新输入');
+			return false;
+		}
+
+		$.post('/newMenu/menu/EmSysUser/updatePassword?oldpass='+$oldpass.val()+'&newpass=' + $newpass.val(), function(
+				msg) {
+			if(msg=="1"){
+				alert('恭喜，密码修改成功');
+				$oldpass.val('');
+				$newpass.val('');
+				$rePass.val('');
+			}
+			else{
+				alert(msg);
+				alert('密码修改失败！');
+			}
+		})
+ } 
+</script>
+
+
+
+
+
+
+<meta name="description" content="罗纳咖啡-我的订单">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>罗纳咖啡-订单详情</title>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/main2.css" rel="stylesheet" type="text/css">
+<link href="./css/pop.css" rel="stylesheet" type="text/css">
+
+<style>
+.xf-item{
+  padding:.5rem .5rem .5rem 0.5rem;
+  border-bottom:1px solid #e6e6e6;
+}
+</style>
+<script src="./js/jquery-1.10.1.min.js.下载" type="text/javascript"></script>
+</head>
+
+<body style="background: rgb(248, 248, 248);">
+	<header>
+		<div class="nav">
+			<a href="http://yun.menu123.cn/newMenu/wechat/pre_my_order.jsp?commTenaId=32" class="back">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			<h1>订单详情</h1>
+			
+		</div>
+	</header>
+	
+	<section class="wrap" style="margin-top:.5rem;">  
+  <!--booking form start-->
+  <div class="my_order">
+    <div class="my_order_list">
+      <p class="title_order_detail">订单日期：  2017.04.13   11:08:10</p>
+      <ul>      
+      	<li><span class="fl">喜栈(地王广场店)</span></li>
+      	<li><span class="fl">订单编号：<b class="org_text">201704131108001</b></span></li>
+      	
+      		<li hidden="hidden"><span class="fl">桌号：<b class="org_text">101</b></span></li>
+
+      		<li><span class="fl" hidden="hidden">支付方式：收银台支付</span></li>
+      	
+      	<li><span class="fl">消费金额：25.0元</span></li>
+      	<!--<li><span class="fl">使用特权：</span><span>20元回馈老顾客代金券（2张）fdsgsfsafasfasffareteqrewrwadrewr hhfldsnaeijrwnasfnaklrqrhnfrqwkl3i4uoqjonfekarjqo5u  rhiwrn3q8 4</span></li>-->
+      	<li hidden="hidden"><span class="fl">订单状态：已下单</span></li>
+      	<!--
+		<li><span class="fl" style="float:left;">支付状态：待支付</span><span class="btn_pay"></span></li>
+		-->
+      	<li><span class="fl">订单备注：</span></li>
+      </ul>
+      <div class="pay_detail">
+          <h3>消费明细</h3>  
+          		
+		      	<div class="xf-item clearfix">
+			     <div class="htitle">芒果蛋糕</div>
+		      	  <span class="htitle_nav" style="padding-right:20px;">单价<b class="org_text">￥25.0</b></span>
+		      	  <span class="htitle_nav" style="">数量:<b>1.0</b></span>
+		      	  <span class="htitle_nav" style="float:right;">小计<b class="org_text">￥25.0</b></span>
+		        </div>
+		        
+		           
+                <div class="clearfix" style="padding-right:.5rem;padding-top:.8rem;padding-bottom:.8rem;">
+		      	  <span style="float:right;">总价：<b class="org_text">￥25.0</b></span>
+		        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <!--booking form end--> 
+</section>
+    <!--
+	<footer style="margin-top:4rem;">
+	-->
+		<!--tab nav-->
+		<!--
+		<div class="tab_nav">
+			<ul>
+				<li><a
+					href="order_dishes.jsp?commTenaId=32"><span
+						class="tab_icon01">点菜</span></a></li>
+				<li><a href="has_list.jsp?commTenaId=32"><span
+						class="tab_icon02">已点</span></a></li>
+				<li><a href="index.jsp?commTenaId=32"><span
+						class="tab_icon03">首页</span></a></li>
+				<li class="current"><a href="my_order1.jsp?commTenaId=32"><span class="tab_icon04">订单</span></a></li>
+				<li><a href="my_data.jsp?commTenaId=32"><span
+						class="tab_icon05">我</span></a></li>
+			</ul>
+		</div>
+	</footer>
+	-->
+	
+	<script src="./js/jquery-1.10.1.min.js.下载" type="text/javascript"></script>
+	<script>
+		$(function(){
+		
+			$(".btn_pay").click(function(){
+				
+				var url = "/newMenu/AlipayApi/pay?bid=32&WIDtotal_fee=25.0&WIDout_trade_no=5880&WIDsubject=201704131108001";
+				//alert(url);
+				var backurl = "";
+				backurl+="&notify_url="+UrlEncode("/newMenu/wechat/common/updateOrderState.jsp");
+				backurl+="&call_back_url="+UrlEncode("/newMenu/wechat/common/updateOrderState.jsp");
+				backurl+="&merchant_url="+UrlEncode("/newMenu/wechat/my_order_view.jsp?oid=5880");
+				window.location.href = url + backurl;	
+							
+			});
+	
+		});
+	
+    </script>
+
+
+</body></html>

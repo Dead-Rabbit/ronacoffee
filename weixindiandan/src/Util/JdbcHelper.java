@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 
 public class JdbcHelper {
-    public static final String url = "jdbc:mysql://localhost/ronacoffee";  
+    public static final String url = "jdbc:mysql://localhost/ronacoffee?autoReconnect=true&useSSL=false";  
     public static final String name = "com.mysql.jdbc.Driver";  
     public static final String user = "root";  
     public static final String password = "UPCwzx1409040216"; 

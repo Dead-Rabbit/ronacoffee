@@ -1,8 +1,9 @@
+<%@page import="dao.ItemTypeDao"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="dao.ShopDao"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%@page import="net.sf.json.JSONObject"%>
 <%@page import="controller.RonaCoffeeMenu"%>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="entity.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="controller.*" %>
@@ -18,6 +19,7 @@ RonaCoffeeMenu rona = new RonaCoffeeMenu(request,response);
 JSONArray prices = rona.getPricesByShopId(shopId);
 
 ShopDao shopDao = new ShopDao();
+ItemTypeDao typeDao = new ItemTypeDao();
 Shops defaShop = shopDao.getShopById(shopId);
 
 //用于发送内容的JSON
@@ -57,7 +59,7 @@ JSONObject sendMenuJson = rona.getItemAPricesByShopId(shopId);
 	<!--
       <li class="all"><a href="javascript:">全部</a></li>
 	  -->
-	  <li class="all"><a>类别</a></li>
+	  <li class="all"><a id="leibie_title">类别</a></li>
       <li><a>全部</a></li>
       <li><a>特价</a></li>
       <li><a>招牌</a></li>
@@ -93,7 +95,7 @@ while (it.hasNext()) {
 			showPrice = "￥<i class=\"price_num\">"+one.get("price")+"</i>";
 		}
 %>
-       <div class="item_li my_li"  sign="<%=one.getString("sign") %>">
+       <div class="item_li my_li"  sign="<%=one.getString("sign") %>" itemType="<%=oneItem.get("itemType") %>">
        <%
        //标志展示
        if(one.getString("sign").equals("招牌")){
@@ -102,7 +104,7 @@ while (it.hasNext()) {
        <%
        }
         %>
-      	<a href=""> <img src="./img/2015_1_8_1722415639_min.jpg"></a> 
+      	<a href=""> <img src="./itemImg/<%=oneItem.get("itemId") %>.jpg"></a> 
 
         <div class="item_text" id="<%=oneItem.get("itemId") %>" itemname="<%=oneItem.get("itemName") %>" orderamount="0">
           <h3><%=oneItem.get("itemName") %></h3>
@@ -136,16 +138,16 @@ while (it2.hasNext()) {
 			showPrice = "￥<i class=\"price_num\">"+one.get("price")+"</i>";
 		}
 %>
-       <div class="item_li my_li" sign="<%=one.getString("sign") %>">
+       <div class="item_li my_li" sign="<%=one.getString("sign") %>" itemType="<%=oneItem.get("itemType") %>">
       	<%
 	       //标志展示
 	       if(one.getString("sign").equals("招牌")){
-	       %>
+	    %>
 	      	<div class="special_tag4"></div>
-	       <%
+	    <%
 	       }
         %>
-      	<a href=""> <img src="./img/2015_1_8_1722415639_min.jpg"></a> 
+      	<a href=""> <img src="./itemImg/<%=oneItem.get("itemId") %>.jpg"></a> 
 
         <div class="item_text" id="<%=oneItem.get("itemId") %>" itemname="<%=oneItem.get("itemName") %>" orderamount="0">
           <h3><%=oneItem.get("itemName") %></h3>
@@ -161,12 +163,19 @@ while (it2.hasNext()) {
   </div>
 </section>
 <!--order dishes content start end-->
-<footer> 
-
+<footer>
+<form style="display:none" id="checkWorks" method="post" action="./wodedingdan.jsp?">
+<input name="weichatId" value="<%=weichatId %>">
+</form>
     <div class="cart-btns-fixed" id="cart1">
     	<div class="cart-btns-fixed-box"> 
-		<a href="./我的订单/index.html" class="btn2 btn-cart" id="add_cart">查看订单</a> 
-		<a href="http://yun.menu123.cn/newMenu/wechat/pre_list.jsp?commTenaId=32" class="btn2 btn-buy" id="gotohas_list">我选好了</a> 
+    	
+		<!-- <a onclick="document.getElementById('checkWorks').submit()"  class="btn2 btn-cart" id="add_cart">查看订单</a>  -->
+		<a href="./wodedingdan.jsp?weichatId=<%=weichatId %>" class="btn2 btn-cart" id="add_cart">查看订单</a>
+		<a href="javascript:" class="btn2 btn-buy" id="gotohas_list" onclick="toUpload()">我选好了</a> 
+		<form action="./已点菜单/已点菜单.jsp" method="post" style="display:none" id="sendForm">
+			<input id="sendInput" name="sendInput" />
+		</form>
 		 </div>
     </div>
 </footer>
@@ -181,10 +190,17 @@ while (it2.hasNext()) {
     <a href="javascript:" class="cancel">取消</a>
     <h4>目录</h4>
    <ul>
-      <li id="531"><a href="javascript:">蛋糕西点
-        <!-- <span class="bubble">7</span> -->
-      </a></li>
-      
+<%
+List<ItemTypes> typeList = typeDao.getAllItem();
+for(ItemTypes type : typeList){
+%>
+      <li id="<%=type.getItemType() %>" itemType="<%=type.getItemType() %>" typeName="<%=type.getTypeName() %>">
+      	<a ><%=type.getTypeName() %>
+     	</a>
+   	  </li>
+<%
+}
+ %>
     </ul> 
   </div>
 </div>
@@ -222,21 +238,21 @@ for(Shops shop : shops){
   </div>
 </div>
 
-<!--点完-->
-<div class="pop_complete" style="display:none">
-<p>您共点了<span id="totalNum"></span>道菜，总价：<strong class="price_num"><span id="totalPrice"></span></strong>元</p>
-<a href="http://yun.menu123.cn/newMenu/wechat/pre_list.jsp?takeOut=0&amp;commTenaId=32&amp;tagIndex=1&amp;classId=">确定下单</a>
-</div>
-
 
 <script type="text/javascript">
 //存放全局变量，与后台程序结合
 	var shopId = "100012";
 	var ifVip = false;
+	//记录页面对应的商品标识（特价等
+	var pageSign = 0;
+	//记录页面对应商品类别（酒水等
+	var pageType = 0;
 	//用来发送点单内容
 	// 
 	var sendMenu = JSON.parse('<%=sendMenuJson %>');
 	sendMenu.ifVip = "<%=ifVip %>";	
+	sendMenu.openid = "<%=weichatId %>";
+	sendMenu.shopId = "<%=shopId %>";
 	console.log(sendMenu);
 </script>
 
@@ -361,7 +377,7 @@ $(function(){
 			for(var oneJson in sendMenu.items){
             	if(sendMenu.items[oneJson].itemId == itemId){
             		sendMenu.items[oneJson].number = parseInt($('#orderAmount').text());
-            		console.log(parseInt($('#orderAmount').text()));
+            		//console.log(parseInt($('#orderAmount').text()));
             	}
             }
 	   	});
@@ -401,12 +417,21 @@ $(function(){
 	$('.pop_count').css('margin-top',-popH2/2);
 	$('.count_item_con').width($('.plus_btn2').outerWidth()+$('.plus_btn2').outerWidth()+$('.add_btn3').outerWidth()+20);
 	
+	
+	//目录点击
 	$('.sort_con li').click(function(){
 		$('.sort_con li').removeClass('selected');
 		$(this).addClass('selected');
 		var classId = $(this)[0].id;
-		window.location.href += "#"+classId;
-		
+		doShowItemsByType(classId);
+		//typeName
+		//leibie_title
+		$('#leibie_title').text($(this).attr("typeName"));
+		console.log($(this).attr("typeName"));
+		$('.pop_sort_class').fadeOut();
+		$('.pop_class').fadeOut();
+		$('.mask_bg').fadeOut();
+				
 	});
 	
 	$('.cancel').click(function(){
@@ -452,7 +477,7 @@ $(function(){
 				  // window.location.href = "";
 				  //改变横条位置
 				  switch(idx){
-					case 1:doShowAllItems();break;
+					case 1:doShowItemsBySign(signs[idx-1]);break;
 					case 2:doShowItemsBySign(signs[idx-1]);break;
 					case 3:doShowItemsBySign(signs[idx-1]);break;
 					}
@@ -470,13 +495,55 @@ $(function(){
 		
 })
 function doShowItemsBySign(sign){
-	var a = document.getElementsByClassName("my_li");
+/*	var a = document.getElementsByClassName("my_li");
 	for(var i=0;i<a.length;i++){ 
 		var one = i;
 		if(a[one].getAttribute("sign") == sign){
 			a[one].style.display="block";
 		}else{
 			a[one].style.display="none";
+		}
+	}
+	*/
+	pageSign = sign;
+	doShowChange();
+}
+//pageSign
+//pageType
+function doShowItemsByType(type){
+	/*var a = document.getElementsByClassName("my_li");
+	if(type==0){
+		doShowAllItems();
+		return ;
+	}
+	for(var i=0;i<a.length;i++){ 
+		var one = i;
+		if(a[one].getAttribute("itemType") == type){
+			a[one].style.display="block";
+		}else{
+			a[one].style.display="none";
+		}
+	}*/
+	pageType = type;
+	doShowChange();
+}
+function doShowChange(){
+	doShowAllItems();
+	var a = document.getElementsByClassName("my_li");
+	if(pageSign != 0 && pageSign != '无'){
+		for(var i=0;i<a.length;i++){ 
+			var one = i;
+			if(a[one].getAttribute("sign") != pageSign){
+				a[one].style.display="none";
+			}
+		}
+	}
+	if(pageType != 0){
+		for(var i=0;i<a.length;i++){ 
+			var one = i;
+			if(a[one].getAttribute("itemType") != pageType){
+				a[one].style.display="none";
+			}
 		}
 	}
 }
@@ -487,6 +554,10 @@ function doShowAllItems(){
 		a[one].style.display="block";
 		//console.log(a[one].getAttribute("sign"));
 	}
+}
+function toUpload(){
+	document.getElementById("sendInput").value = JSON.stringify(sendMenu);
+	document.getElementById("sendForm").submit();
 }
 </script>
 <!-- 我的JS文件 -->

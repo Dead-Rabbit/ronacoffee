@@ -3,7 +3,14 @@ package entity;
 public class Items {
 	private String itemId = "";
 	private String itemName = "";
+	private int itemType = 0;
 	private String description = "";
+	public int getItemType() {
+		return itemType;
+	}
+	public void setItemType(int itemType) {
+		this.itemType = itemType;
+	}
 	public String getItemId() {
 		return itemId;
 	}

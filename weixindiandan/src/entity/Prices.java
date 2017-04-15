@@ -3,8 +3,8 @@ package entity;
 public class Prices {
 	private String shopId = "";
 	private String itemId = "";
-	private float price = 0;
-	private float vipPrice = 0;
+	private Float price = null;
+	private Float vipPrice = null;
 	private String sign = "";
 	public String getSign() {
 		return sign;
@@ -18,7 +18,7 @@ public class Prices {
 	public float getVipPrice() {
 		return vipPrice;
 	}
-	public void setVipPrice(float vipPrice) {
+	public void setVipPrice(Float vipPrice) {
 		this.vipPrice = vipPrice;
 	}
 	public void setShopId(String shopId) {

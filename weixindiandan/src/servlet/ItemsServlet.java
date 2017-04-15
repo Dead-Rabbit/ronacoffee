@@ -54,9 +54,13 @@ public class ItemsServlet extends HttpServlet {
 				//根据商店ID获取商店内item及其价位
 				System.out.println(json.getString("shopId"));
 				res = rona.getPricesByShopId(json.getString("shopId")).toString();
+				Writer writer = response.getWriter();
+				writer.write(res);
+			break;
+			case "getUpload"://获得用户的点餐
+				//根据商店ID获取商店内item及其价位
+				System.out.println(json.getString("shopId"));
 			break;
 		}
-		Writer writer = response.getWriter();
-		writer.write(res);
 	}
 }

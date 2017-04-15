@@ -115,24 +115,28 @@ public class RonaCoffeeMenu {
 		}
 		return res;
 	}
-	//获取商店对应所有商品集，以Price表中的顺序排序，JSON格式
-		public JSONObject getItemAPricesByShopId(String shopId){
-			JSONObject res = new JSONObject();
-			PriceDao priceDao = new PriceDao();
-			
-			List<Prices> prices = priceDao.getPriceByShopId(shopId);
-			System.out.println(prices);
-			for(Prices price : prices){
-				JSONObject oneJson = new JSONObject();
-				oneJson.put("itemId", getOneItemFList(price.getItemId()).getItemId());
-				oneJson.put("price", price.getPrice());
-				oneJson.put("vipPrice", price.getVipPrice());
-				oneJson.put("number", 0);
-				res.put("items", oneJson);
-			}
-			res.put("ifVip", "false");
-			return res;
+	//获取商店对应所有商品集，以Price表中的顺序排序，JSON格式 用于包装sendMenu
+	public JSONObject getItemAPricesByShopId(String shopId){
+		JSONObject res = new JSONObject();
+		PriceDao priceDao = new PriceDao();
+		
+		List<Prices> prices = priceDao.getPriceByShopId(shopId);
+		System.out.println(prices);
+		JSONArray items = new JSONArray();
+		for(Prices price : prices){
+			JSONObject oneJson = new JSONObject();
+			Items item = getOneItemFList(price.getItemId());
+			oneJson.put("itemId", item.getItemId());
+			oneJson.put("itemName", item.getItemName());
+			oneJson.put("price", price.getPrice());
+			oneJson.put("vipPrice", price.getVipPrice());
+			oneJson.put("number", 0);
+			items.put(oneJson);
 		}
+		res.put("items", items);
+		res.put("ifVip", "false");
+		return res;
+	}
 	private Items getOneItemFList(String itemId){
 		ItemDao itemDao = new ItemDao();
 		List<Items> items = itemDao.getAllItem();

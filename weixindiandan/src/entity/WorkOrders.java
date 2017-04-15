@@ -1,11 +1,34 @@
 package entity;
 
+import java.sql.Timestamp;
+
 public class WorkOrders {
 	private String orderId = null;
+	private String weichatId = null;
 	private String shopId = null;
 	private String itemIds = null;
-	private String price = null;
+	private Float price = null;
 	private Boolean ifBalance = null;
+	private String token = null;
+	private Timestamp createTime = null;
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+	public String getWeichatId() {
+		return weichatId;
+	}
+	public void setWeichatId(String weichatId) {
+		this.weichatId = weichatId;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -24,10 +47,10 @@ public class WorkOrders {
 	public void setItemIds(String itemIds) {
 		this.itemIds = itemIds;
 	}
-	public String getPrice() {
+	public Float getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 	public Boolean getIfBalance() {
